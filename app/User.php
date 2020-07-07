@@ -13,6 +13,8 @@ class User extends Authenticatable
     const USER_LEVEL_ADMIN = "ADMIN";
     const USER_LEVEL_CLIENT = "CLIENT";
 
+    const DEFAULT_AVATAR = "/assets/images/user.png";
+
     /**
      * The attributes that are mass assignable.
      *

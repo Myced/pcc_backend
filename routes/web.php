@@ -18,3 +18,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users', 'UsersController@index')->name("users");
 Route::get('/users/{id}', 'UsersController@show')->name('user.show');
+Route::post('/users/{id}/password/update', 'UsersController@updatePassword')->name('user.password.update');
+Route::post('/users/{id}/info/update', 'UsersController@updateUserInfo')->name('user.info.update');
