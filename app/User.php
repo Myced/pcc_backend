@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const USER_LEVEL_ADMIN = "ADMIN";
+    const USER_LEVEL_CLIENT = "CLIENT";
+
     /**
      * The attributes that are mass assignable.
      *

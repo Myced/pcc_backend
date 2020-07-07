@@ -21,12 +21,6 @@
     <!-- Animation Css -->
     <link href="/assets/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Bootstrap Material Datetime Picker Css -->
-    <link href="/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
-
-    <!-- Bootstrap DatePicker Css -->
-    <link href="/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-
     <!-- Wait Me Css -->
     <link href="/assets/plugins/waitme/waitMe.css" rel="stylesheet" />
 
@@ -86,15 +80,6 @@
 
     <!-- Autosize Plugin Js -->
     <script src="/assets/plugins/autosize/autosize.js"></script>
-
-    <!-- Moment Plugin Js -->
-    <script src="/assets/plugins/momentjs/moment.js"></script>
-
-    <!-- Bootstrap Material Datetime Picker Plugin Js -->
-    <script src="/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
-    <!-- Bootstrap Datepicker Plugin Js -->
-    <script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
     <!-- Custom Js -->
     <script src="/assets/js/admin.js"></script>

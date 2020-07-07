@@ -8,6 +8,7 @@
 <div class="card">
     <div class="body">
         <form id="sign_in" method="POST" action="{{ route('login') }}">
+            @csrf
             <div class="msg">
                 <h2>Login</h2>
             </div>
