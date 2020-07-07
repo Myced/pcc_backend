@@ -25,14 +25,14 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li>
+            <li class="{{  Request::route()->named('home') ? 'active' : '' }}" >
                 <a href="{{ route('home') }}">
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>
             </li>
-            <li>
-                <a href="../../pages/typography.html">
+            <li class="{{  Request::route()->named('users') ? 'active' : '' }}">
+                <a href="{{ route('users') }}">
                     <i class="material-icons">people_alt</i>
                     <span>Users</span>
                 </a>

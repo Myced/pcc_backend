@@ -24,8 +24,7 @@
     <!-- Wait Me Css -->
     <link href="/assets/plugins/waitme/waitMe.css" rel="stylesheet" />
 
-    <!-- Bootstrap Select Css -->
-    <link href="/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    @yield("styles")
 
     <!-- Custom Css -->
     <link href="/assets/css/style.css" rel="stylesheet">
@@ -80,6 +79,9 @@
 
     <!-- Autosize Plugin Js -->
     <script src="/assets/plugins/autosize/autosize.js"></script>
+
+    {{-- //load extra js plugins --}}
+    @yield('scripts')
 
     <!-- Custom Js -->
     <script src="/assets/js/admin.js"></script>

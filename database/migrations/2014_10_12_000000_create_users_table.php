@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('tel')->nullable();
+            $table->string('tel_unformatted')->nullable();
             $table->string('level')->default(\App\User::USER_LEVEL_CLIENT);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
