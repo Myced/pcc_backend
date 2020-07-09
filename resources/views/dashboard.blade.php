@@ -26,22 +26,28 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-cyan hover-expand-effect">
                     <div class="icon">
-                        <i class="material-icons">help</i>
+                        <i class="material-icons">euro_symbol</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW TICKETS</div>
-                        <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">257</div>
+                        <div class="text">AMOUNT</div>
+                        <div class="number count-to" data-from="0" data-to="257" 
+                            data-speed="1000" data-fresh-interval="20">
+                            257 F
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-light-green hover-expand-effect">
                     <div class="icon">
-                        <i class="material-icons">forum</i>
+                        <i class="material-icons">attach_money</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW COMMENTS</div>
-                        <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">243</div>
+                        <div class="text">THIS MONTH</div>
+                        <div class="number count-to" data-from="0" data-to="243" 
+                            data-speed="1000" data-fresh-interval="20">
+                            243 F
+                        </div>
                     </div>
                 </div>
             </div>
