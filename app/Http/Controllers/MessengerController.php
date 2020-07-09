@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Messenger;
+use App\PurchaseItem;
 use App\Utils\DateUtil;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,8 @@ class MessengerController extends Controller
         //save the messenger magazine;
         $messenger->save();
 
+        $this->addPurchaseItem($messenger);
+
         session()->flash('success', "The Messenger Uploaded !!");
 
         return redirect()->route('messengers');
@@ -56,5 +59,21 @@ class MessengerController extends Controller
         $value = time() . $rand;
 
         return sha1($value);
+    }
+
+    private function addPurchaseItem($messenger)
+    {
+        $item = new PurchaseItem;
+
+        $item->name = $messenger->name;
+        $item->type = \App\PurchaseItem::ITEM_MESSENGER;
+        $item->item_code = $messenger->code;
+        $item->item_id = $messenger->id;
+
+        $item->save();
+
+        //save the id to the messenger 
+        $messenger->purchase_item_id = $messenger->id;
+        $messenger->save();
     }
 }

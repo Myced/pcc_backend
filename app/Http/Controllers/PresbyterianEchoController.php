@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PurchaseItem;
 use App\Utils\DateUtil;
 use App\PresbyterianEcho;
 use Illuminate\Http\Request;
@@ -47,6 +48,8 @@ class PresbyterianEchoController extends Controller
         
         //save the echo magazine;
         $echo->save();
+        
+        $this->addPurchaseItem($echo);
 
         session()->flash('success', "Presbyterian Echo Magazine Uploaded");
 
@@ -65,5 +68,21 @@ class PresbyterianEchoController extends Controller
         $value = time() . $rand;
 
         return sha1($value);
+    }
+
+    private function addPurchaseItem($echo)
+    {
+        $item = new PurchaseItem;
+
+        $item->name = $echo->name;
+        $item->type = \App\PurchaseItem::ITEM_ECHO;
+        $item->item_code = $echo->code;
+        $item->item_id = $echo->id;
+
+        $item->save();
+
+        //save the id to the echo 
+        $echo->purchase_item_id = $echo->id;
+        $echo->save();
     }
 }
