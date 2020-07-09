@@ -20,3 +20,6 @@ Route::get('/users', 'UsersController@index')->name("users");
 Route::get('/users/{id}', 'UsersController@show')->name('user.show');
 Route::post('/users/{id}/password/update', 'UsersController@updatePassword')->name('user.password.update');
 Route::post('/users/{id}/info/update', 'UsersController@updateUserInfo')->name('user.info.update');
+Route::get('/echos', 'PresbyterianEchoController@index')->name('echos');
+Route::get('/echos/create', 'PresbyterianEchoController@create')->name('echo.create');
+Route::post('/echos/store', 'PresbyterianEchoController@store')->name('echo.store');

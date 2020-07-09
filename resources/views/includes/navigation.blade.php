@@ -5,8 +5,11 @@
             <img src="/assets/images/user.png" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-            <div class="email">john.doe@example.com</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" 
+                aria-expanded="false">
+                {{ auth()->user()->name }}
+            </div>
+            <div class="email">{{ auth()->user()->email }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
@@ -61,19 +64,19 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="{{  Request::is('echos') || Request::is('echos/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">call_to_action</i>
                     <span>Presbyterian Echo</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
-                        <a href="">
+                    <li class="{{  Request::route()->named('echo.create') ? 'active' : '' }}">
+                        <a href="{{ route('echo.create') }}">
                             Upload New Magazine
                         </a>
                     </li>
-                    <li>
-                        <a href="">
+                    <li class="{{  Request::route()->named('echos') ? 'active' : '' }}">
+                        <a href="{{ route('echos') }}">
                             See All Magazines
                         </a>
                     </li>
