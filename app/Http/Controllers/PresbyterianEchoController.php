@@ -30,7 +30,7 @@ class PresbyterianEchoController extends Controller
         
         $file_name = time() . $file->getClientOriginalName();
         $hash = $this->generateHash();
-        $path = $file->storePublicly(PresbyterianEcho::PATH);
+        $path = 'storage/' . $file->storePublicly(PresbyterianEcho::PATH);
 
         $echo->name = $request->name;
         $echo->code = $request->code;
@@ -50,9 +50,7 @@ class PresbyterianEchoController extends Controller
 
         session()->flash('success', "Presbyterian Echo Magazine Uploaded");
 
-        return back();
-
-        // return redirect()->route('echos');
+        return redirect()->route('echos');
     }
 
     public function delete($echo_id)

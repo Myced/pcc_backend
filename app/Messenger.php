@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Messenger extends Model
 {
-    //
+    const PATH = "messengers";
 }

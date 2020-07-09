@@ -34,7 +34,7 @@
                     <span>Home</span>
                 </a>
             </li>
-            <li class="{{  Request::route()->named('users') ? 'active' : '' }}">
+            <li class="{{  Request::route()->named('users') || Request::is('users/*') ? 'active' : '' }}">
                 <a href="{{ route('users') }}">
                     <i class="material-icons">people_alt</i>
                     <span>Users</span>
@@ -83,19 +83,19 @@
                 </ul>
             </li>
 
-            <li class="active">
+            <li class="{{  Request::is('messengers') || Request::is('messengers/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">subtitles</i>
                     <span>The Messenger</span>
                 </a>
                 <ul class="ml-menu">
-                    <li class="active">
-                        <a href="">
+                    <li class="{{  Request::route()->named('messenger.create') ? 'active' : '' }}">
+                        <a href="{{ route('messenger.create') }}">
                             Upload New Messenger
                         </a>
                     </li>
-                    <li>
-                        <a href="">
+                    <li class="{{  Request::route()->named('messengers') ? 'active' : '' }}">
+                        <a href="{{ route('messengers') }}">
                             See All Books
                         </a>
                     </li>

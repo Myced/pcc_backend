@@ -22,6 +22,7 @@ class CreateMessengersTable extends Migration
             $table->string('file_name')->nullable();
             $table->string('path')->nullable();
             $table->string('hash')->nullable();
+            $table->string('url')->nullable();
             $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });

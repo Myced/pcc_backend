@@ -23,3 +23,6 @@ Route::post('/users/{id}/info/update', 'UsersController@updateUserInfo')->name('
 Route::get('/echos', 'PresbyterianEchoController@index')->name('echos');
 Route::get('/echos/create', 'PresbyterianEchoController@create')->name('echo.create');
 Route::post('/echos/store', 'PresbyterianEchoController@store')->name('echo.store');
+Route::get('/messengers', 'MessengerController@index')->name('messengers');
+Route::get('/messengers/create', 'MessengerController@create')->name('messenger.create');
+Route::post('/messengers/store', 'MessengerController@store')->name('messenger.store');
