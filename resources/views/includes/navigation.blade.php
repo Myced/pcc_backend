@@ -40,7 +40,7 @@
                     <span>Users</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">library_books</i>
                     <span>Diary</span>
@@ -62,7 +62,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="{{  Request::is('echos') || Request::is('echos/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
@@ -110,13 +110,7 @@
                 </a>
                 <ul class="ml-menu">
                     <li>
-                        <a href="../../pages/tables/normal-tables.html">Normal Tables</a>
-                    </li>
-                    <li>
-                        <a href="../../pages/tables/jquery-datatable.html">Jquery Datatables</a>
-                    </li>
-                    <li>
-                        <a href="../../pages/tables/editable-table.html">Editable Tables</a>
+                        <a href="{{ route("reports.purchases") }}">Purchases</a>
                     </li>
                 </ul>
             </li>

@@ -26,3 +26,7 @@ Route::post('/echos/store', 'PresbyterianEchoController@store')->name('echo.stor
 Route::get('/messengers', 'MessengerController@index')->name('messengers');
 Route::get('/messengers/create', 'MessengerController@create')->name('messenger.create');
 Route::post('/messengers/store', 'MessengerController@store')->name('messenger.store');
+
+Route::group(['prefix' => 'reports'], function(){
+    Route::get('/purchases', 'ReportsController@purchases')->name('reports.purchases');
+});
