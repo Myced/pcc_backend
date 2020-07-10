@@ -100,6 +100,58 @@
                                     </div>
 
                                 </div>
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-hover dashboard-task-infos">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Client</th>
+                                                        <th>Telephone</th>
+                                                        <th>Item</th>
+                                                        <th>Amount</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $count = 1;
+                                                    @endphp
+                
+                                                    @foreach ( $user->purchases as $purchase)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $count++ }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $purchase->customer_name }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $purchase->customer_tel }}
+                                                            </td>
+                                                            <td>
+                                                                <span class="label bg-blue">
+                                                                    {{ $purchase->item_name }}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {{ $purchase->amount }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $purchase->created_at->format('j, M Y') }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
