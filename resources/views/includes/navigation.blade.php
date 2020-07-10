@@ -114,13 +114,13 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="{{  Request::is('reports') || Request::is('reports/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">view_list</i>
                     <span>Reports</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
+                    <li class="{{  Request::route()->named('reports.purchases') ? 'active' : '' }}">
                         <a href="{{ route("reports.purchases") }}">Purchases</a>
                     </li>
                 </ul>
