@@ -11,6 +11,13 @@
             @csrf
             <div class="msg">
                 <h2>Login</h2>
+                
+                @if($message = session('error'))
+                    <strong style="color: red; font-size: 16px;">
+                        {{ $message }}
+                    </strong>
+                @endif
+
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
