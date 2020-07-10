@@ -16,7 +16,18 @@
                     <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
                     <li role="separator" class="divider"></li>
                     
-                    <li><a href="javascript:void(0);">
+                    <li>
+                        <form class="" action="{{ route('logout') }}"
+                            method="post" style="display: none;"
+                            id="logout">
+                            @csrf
+
+                        </form>
+
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout').submit();">
+                            
                         <i class="material-icons">input</i>Sign Out</a>
                     </li>
                 </ul>

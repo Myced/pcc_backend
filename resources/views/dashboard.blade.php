@@ -19,7 +19,10 @@
                     </div>
                     <div class="content">
                         <div class="text">ALL PURCHASES</div>
-                        <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">125</div>
+                        <div class="number count-to" data-from="0" data-to="125" 
+                            data-speed="15" data-fresh-interval="20">
+                            {{ $dashboardUtil->purchaseCount }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,7 +35,7 @@
                         <div class="text">AMOUNT</div>
                         <div class="number count-to" data-from="0" data-to="257" 
                             data-speed="1000" data-fresh-interval="20">
-                            257 F
+                            {{ number_format($dashboardUtil->purchaseAmount) }} F
                         </div>
                     </div>
                 </div>
@@ -46,7 +49,7 @@
                         <div class="text">THIS MONTH</div>
                         <div class="number count-to" data-from="0" data-to="243" 
                             data-speed="1000" data-fresh-interval="20">
-                            243 F
+                            {{ number_format($dashboardUtil->amountThisMonth) }} F
                         </div>
                     </div>
                 </div>
@@ -58,7 +61,10 @@
                     </div>
                     <div class="content">
                         <div class="text">ALL USERS</div>
-                        <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">1225</div>
+                        <div class="number count-to" data-from="0" data-to="1225" 
+                            data-speed="1000" data-fresh-interval="20">
+                            {{ $dashboardUtil->usersCount }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,66 +92,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Ndi Cedric</td>
-                                        <td>678 569 985</td>
-                                        <td>
-                                            <span class="label bg-green">
-                                                Diary 2020
-                                            </span>
-                                        </td>
-                                        <td>500</td>
-                                        <td>
-                                            12/Jun/2020
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Task B</td>
-                                        <td><span class="label bg-blue">To Do</span></td>
-                                        <td>John Doe</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Task C</td>
-                                        <td><span class="label bg-light-blue">On Hold</span></td>
-                                        <td>John Doe</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Task D</td>
-                                        <td><span class="label bg-orange">Wait Approvel</span></td>
-                                        <td>John Doe</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Task E</td>
-                                        <td>
-                                            <span class="label bg-red">Suspended</span>
-                                        </td>
-                                        <td>John Doe</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @php
+                                        $count = 1;
+                                    @endphp
+
+                                    @foreach (\App\Utils\DashboardUtil::getLatestPurchases() as $purchase)
+                                        <tr>
+                                            <td>
+                                                {{ $count++ }}
+                                            </td>
+                                            <td>
+                                                {{ $purchase->customer_name }}
+                                            </td>
+                                            <td>
+                                                {{ $purchase->customer_tel }}
+                                            </td>
+                                            <td>
+                                                <span class="label bg-blue">
+                                                    {{ $purchase->item_name }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{ $purchase->amount }}
+                                            </td>
+                                            <td>
+                                                {{ $purchase->created_at->format('j, M Y') }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
