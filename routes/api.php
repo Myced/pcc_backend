@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/echos', 'Api\BooksController@echos');
+Route::get('/echos/all', 'Api\BooksController@allEchos');
+Route::get('/messengers', 'Api\BooksController@messengers');
+Route::get('/messengers/all', 'Api\BooksController@allMessengers');
