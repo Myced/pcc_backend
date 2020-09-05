@@ -27,6 +27,13 @@ Route::get('/messengers', 'MessengerController@index')->name('messengers');
 Route::get('/messengers/create', 'MessengerController@create')->name('messenger.create');
 Route::post('/messengers/store', 'MessengerController@store')->name('messenger.store');
 
+Route::group(['prefix' => 'diary'], function(){
+    Route::group(['prefix' => 'manage'], function(){
+        Route::get('/', 'DiaryController@manageYears')->name('diary.manage.years');
+        Route::post('/store', 'DiaryController@store')->name("diary.store");
+    });
+});
+
 Route::group(['prefix' => 'reports'], function(){
     Route::get('/purchases', 'ReportsController@purchases')->name('reports.purchases');
 });

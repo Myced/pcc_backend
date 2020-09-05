@@ -19,6 +19,8 @@ class DateUtil
         "12" => "December"
     ];
 
+    const DATE_TIME_FORMAT = "Y-m-d H:i:s";
+
     public static function getMonths()
     {
         return self::months;

@@ -51,12 +51,18 @@
                     <span>Users</span>
                 </a>
             </li>
-            {{-- <li>
+
+            <li class="{{  Request::route()->named('diary') || Request::is('diary/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">library_books</i>
                     <span>Diary</span>
                 </a>
                 <ul class="ml-menu">
+                    <li class="{{  Request::route()->named('diary.manage.years') ? 'active' : '' }}">
+                        <a href="{{ route("diary.manage.years") }}" >
+                            <span>Manage Diary Years</span>
+                        </a> 
+                    </li>
                     <li>
                         <a href="javascript:void(0);" >
                             <span>2018</span>
@@ -73,7 +79,7 @@
                         </a>
                     </li>
                 </ul>
-            </li> --}}
+            </li>
 
             <li class="{{  Request::is('echos') || Request::is('echos/*') ? 'active' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle">
