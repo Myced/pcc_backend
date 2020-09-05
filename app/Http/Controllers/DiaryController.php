@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\DiaryYear;
+use App\DiaryReading;
 use App\PurchaseItem;
 use App\Utils\DateUtil;
 use Illuminate\Http\Request;
+use App\Imports\DiaryReadingImport;
 
 class DiaryController extends Controller
 {
@@ -61,6 +64,57 @@ class DiaryController extends Controller
             return false; 
 
         return true;
+    }
+
+    public function activateYear($year)
+    {
+        $diary = DiaryYear::where('year', $year)->first();
+        
+        $diary->is_available = true;
+        $diary->save();
+
+        session()->flash('success', "Diary for " . $year . " is now available");
+
+        return back();
+    }
+
+    public function deactivateYear($year)
+    {
+        $diary = DiaryYear::where('year', $year)->first();
+        
+        $diary->is_available = false;
+        $diary->save();
+
+        session()->flash('info', "Diary for " . $year . " is now Unavailable");
+
+        return back();
+    }
+
+    public function detail($year)
+    {
+        $diaryYear = DiaryYear::where('year', $year)->first();
+        $readings = DiaryReading::where('year', $year)->get();
+
+        return view('diary.detail', compact('diaryYear', 'readings'));
+    }
+
+    public function uploadDiary(Request $request, $year)
+    {
+        $file = $request->diary;
+
+        
+        $file_name = time() . $file->getClientOriginalName();
+        $path = 'storage/' . $file->storePublicly(DiaryReading::UPLOAD_PATH);
+
+        Excel::import(new DiaryReadingImport, public_path($path));
+
+        $diaryYear = DiaryYear::where('year', $year)->first();
+        $diaryYear->content_uploaded = true;
+        $diaryYear->save();
+
+        session()->flash('success', "Diary " . $year . " Uploaded successfully");
+
+        return back();
     }
 
     private function addPurchaseItem($diaryYear)

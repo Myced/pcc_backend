@@ -80,19 +80,19 @@
                                             </td>
                                             <td>
 												@if($year->is_available)
-													<a href="" target="_blank"
+													<a href="{{ route('diary.year.deactivate', ['year' => $year->year]) }}"
 														class="btn btn-danger waves-effect"
 														title="Make Year Unavailable">
 														<i class="material-icons">clear</i>
 													</a>
 												@else 
-													<a href="" target="_blank"
+													<a href="{{ route('diary.year.activate', ['year' => $year->year]) }}"
 														class="btn btn-success waves-effect"
 														title="Make Year Available">
 														<i class="material-icons">done</i>
 													</a>
 												@endif
-                                                <a href="" target="_blank"
+                                                <a href="{{ route('diary.detail', ['year' => $year->year]) }}"
                                                     class="btn btn-primary waves-effect"
                                                     title="View Diary">
                                                     <i class="material-icons">forward</i>

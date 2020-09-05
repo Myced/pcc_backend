@@ -63,21 +63,21 @@
                             <span>Manage Diary Years</span>
                         </a> 
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" >
-                            <span>2018</span>
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <span>2019</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <span>2020</span>
-                        </a>
-                    </li>
+
+                    @foreach (\App\DiaryYear::all() as $diaryYear)
+                        <li class="{{ 
+                                Request::is('diary/manage/detail/' . $diaryYear->year) 
+                                ? 'active'
+                                : ''
+                                }}">
+                            <a href="{{ route('diary.detail', ['year' => $diaryYear->year]) }}" >
+                                <span>
+                                    {{ $diaryYear->year }}
+                                </span>
+                            </a> 
+                        </li>
+                    @endforeach
+
                 </ul>
             </li>
 

@@ -31,6 +31,10 @@ Route::group(['prefix' => 'diary'], function(){
     Route::group(['prefix' => 'manage'], function(){
         Route::get('/', 'DiaryController@manageYears')->name('diary.manage.years');
         Route::post('/store', 'DiaryController@store')->name("diary.store");
+        Route::get('/detail/{year}', 'DiaryController@detail')->name('diary.detail');
+        Route::post('/detail/{year}', 'DiaryController@uploadDiary')->name('diary.upload');
+        Route::get('/activate/{year}', 'DiaryController@activateYear')->name('diary.year.activate');
+        Route::get('/deactivate/{year}', 'DiaryController@deactivateYear')->name('diary.year.deactivate');
     });
 });
 
