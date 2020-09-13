@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class UsersController extends Controller
 
             if( ! is_null($user) )
             {
-                $user->password = \Hash::make($password);
+                $user->password = Hash::make($password);
                 $user->save();
 
                 session()->flash('success', "User Password Updated");
@@ -52,6 +53,11 @@ class UsersController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->tel = $request->tel;
+
+            if( ! empty($request->title) )
+            {
+                $user->title = $request->title;
+            }
 
             $user->save();
 

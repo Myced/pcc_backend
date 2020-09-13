@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'auth'], function(){
+    Route::post('/login', 'Api\AuthController@login');
+    Route::post('/register', 'Api\AuthController@register');
+});
+
 Route::get('/echos', 'Api\BooksController@echos');
 Route::get('/echos/all', 'Api\BooksController@allEchos');
 Route::get('/messengers', 'Api\BooksController@messengers');

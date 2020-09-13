@@ -173,6 +173,17 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="title" class="col-sm-2 control-label">Title:</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" id="title" name="title" 
+                                                    placeholder="E.g. The Moderator" 
+                                                    value="{{ $user->title }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="Email" class="col-sm-2 control-label">Email:</label>
                                         <div class="col-sm-10">
                                             <div class="form-line">
