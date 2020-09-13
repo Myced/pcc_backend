@@ -178,7 +178,7 @@
                                             <div class="form-line">
                                                 <input type="text" class="form-control" id="title" name="title" 
                                                     placeholder="E.g. The Moderator" 
-                                                    value="{{ $user->title }}" required>
+                                                    value="{{ $user->title }}" >
                                             </div>
                                         </div>
                                     </div>
