@@ -114,6 +114,9 @@ class AuthController extends Controller
 
                     $user->save();
 
+                    //send an sms 
+                    $this->sendSms($user);
+
                     $result['message'] = "Registration Successful";
                     $result['success'] = true;
                     $result['data'] = $user;
@@ -149,5 +152,23 @@ class AuthController extends Controller
             return false;
 
         return true;
+    }
+
+    private function sendSms($user)
+    {
+        //send an sms to the user 
+        $username = urlencode("PCC COOP");
+        $password = "Pefscom@2020";
+
+        $tel = $user->tel;
+
+        $sms = "Dear " . $user->name 
+                . ", \nThanks for registering with the PCC App";
+
+        $url = "http://api.foseintsms.com/api_v3.php?username=" . $username
+                . "&password=" . $password . "&message=" . urlencode($sms) 
+                . "&telephone=" . $tel;
+
+        file_get_contents($url);
     }
 }
