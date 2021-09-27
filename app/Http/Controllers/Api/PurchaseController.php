@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Purchase;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\PurchaseItem;
 
 class PurchaseController extends Controller
 {
@@ -43,6 +44,19 @@ class PurchaseController extends Controller
             "success" => true,
             "message" => "Transaction successful",
             "data" => $purchases
+        ];
+
+        return response()->json($result, 200);
+    }
+
+    public function getPurchaseItem($code)
+    {
+        $purchaseItem = PurchaseItem::where('item_code', $code)->first();
+
+        $result = [
+            "success" => true,
+            "message" => "Transaction successful",
+            "data" => $purchaseItem
         ];
 
         return response()->json($result, 200);
