@@ -30,3 +30,6 @@ Route::get('/diary/years', 'Api\DiaryController@diaryYears');
 Route::get('/diary/detail/{year}', 'Api\DiaryController@diaryDetail');
 Route::post('/user/purchase/add', 'Api\PurchaseController@addPurchase');
 Route::post('/user/purchase/list', 'Api\PurchaseController@purchaseList');
+
+//MTN Momo CallBack URL
+Route::post('/momo/callback', 'MomoCallback@index')->name('momo.callback');

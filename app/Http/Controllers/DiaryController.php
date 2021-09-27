@@ -124,6 +124,7 @@ class DiaryController extends Controller
         $purchaseItem->name = "Church Diary " . $diaryYear->year;
         $purchaseItem->type = PurchaseItem::ITEM_DIARY;
         $purchaseItem->item_id = $diaryYear->id;
+        $purchaseItem->item_code = "DIARY-" . $diaryYear->year;
 
         $purchaseItem->save();
 
