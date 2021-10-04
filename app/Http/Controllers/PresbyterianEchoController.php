@@ -82,7 +82,7 @@ class PresbyterianEchoController extends Controller
         $item->save();
 
         //save the id to the echo 
-        $echo->purchase_item_id = $echo->id;
+        $echo->purchase_item_id = $item->id;
         $echo->save();
     }
 }

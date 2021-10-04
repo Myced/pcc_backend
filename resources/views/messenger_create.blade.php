@@ -48,7 +48,7 @@
                                 <div class="col-sm-10">
                                     <div class="form-line">
                                         <input type="text" class="form-control" id="Email" 
-                                            name="code" placeholder="Code: E.g. PE-02-2020" required>
+                                            name="code" placeholder="Code: E.g. ME-02-2020" required>
                                     </div>
                                 </div>
                             </div>

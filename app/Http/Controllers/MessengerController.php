@@ -73,7 +73,7 @@ class MessengerController extends Controller
         $item->save();
 
         //save the id to the messenger 
-        $messenger->purchase_item_id = $messenger->id;
+        $messenger->purchase_item_id = $item->id;
         $messenger->save();
     }
 }
