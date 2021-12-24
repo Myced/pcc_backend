@@ -108,21 +108,27 @@ class AuthController extends Controller
                 $result['message'] = "The telephone number must be 9 digits";  
             }
             else{
+
+                $accountExists = false;
                 
                 //check that an account does not exists already 
                 //check with email 
                 if( $request->email != "" || $request->email != null )
                 {
+                    
                     if($this->emailAccountExists($request->email))
                     {
+                        $accountExists = true;
                         $result['message'] = "An account already exist with this email";
                     } 
                 }
-                else if( $this->telAccountExists($telFormatted) )
+                if( $this->telAccountExists($telFormatted) )
                 {
+                    $accountExists = true;
                     $result['message'] = "An account already exist with this telephone number"; 
                 }
-                else {
+
+                if( ! $accountExists ) {
 
                     $user = new User;
                     $user->name = $request->name;
@@ -189,7 +195,13 @@ class AuthController extends Controller
                 . "&password=" . $password . "&message=" . urlencode($sms) 
                 . "&telephone=" . $tel;
 
-        file_get_contents($url);
+        try{
+            file_get_contents($url);
+        }
+        catch(\Exception $e)
+        {
+
+        }
     }
 
     /**
@@ -200,12 +212,8 @@ class AuthController extends Controller
     public function findUsername()
     {
         $login = request()->input('email');
-
-        // dd($login);
  
         $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'tel';
- 
-        request()->merge([$fieldType => $login]);
  
         return $fieldType;
     }
