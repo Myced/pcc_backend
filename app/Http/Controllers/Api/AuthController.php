@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use Auth;
 use Hash;
 use App\User;
+use App\Utils\FilterUtil;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Utils\FilterUtil;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
+    use AuthenticatesUsers;
+
+    private $username;
+
+    public function __construct()
+    {
+        $this->username = $this->findUsername();
+    }
+
     public function index()
     {
 
@@ -18,7 +28,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->email;
+        $tel = $request->email;
         $password = $request->password;
         
         //set the result data 
@@ -29,17 +39,23 @@ class AuthController extends Controller
         ];
 
         $credentials = [
-            "email" => $email,
+            "$this->username" => $tel,
             "password" => $password
         ];
 
+        if(empty($tel) || empty($password))
+        {
+            $result['message'] = "You need to provide both a Telephone number and Password to login";
+            return response()->json($result, 200);
+        }
+
         //check if the account exists. 
-        $user = User::where('email', $email)->first();
+        $user = User::where("$this->username", $tel)->first();
 
         if($user == null)
         {
             //then send the response the account does not exists. 
-            $result['message'] = "An account for " . $email . " does not exist.";
+            $result['message'] = "An account for " . $tel . " does not exist.";
         }
         else {
             //try to login . 
@@ -69,11 +85,12 @@ class AuthController extends Controller
         ];
 
         //validate the main field.s 
-        if( !isset($request->email) )
-        {
-            $result['message'] = "The email is required!";   
-        }
-        elseif( ! isset( $request->tel ) )
+        //do not validate the email field.
+        // if( !isset($request->email) )
+        // {
+        //     $result['message'] = "The email is required!";   
+        // }
+        if( ! isset( $request->tel ) )
         {
             $result['message'] = "The telephone number is required!";  
         }
@@ -94,9 +111,12 @@ class AuthController extends Controller
                 
                 //check that an account does not exists already 
                 //check with email 
-                if( $this->emailAccountExists($request->email) )
+                if( $request->email != "" || $request->email != null )
                 {
-                    $result['message'] = "An account already exist with this email"; 
+                    if($this->emailAccountExists($request->email))
+                    {
+                        $result['message'] = "An account already exist with this email";
+                    } 
                 }
                 else if( $this->telAccountExists($telFormatted) )
                 {
@@ -170,5 +190,33 @@ class AuthController extends Controller
                 . "&telephone=" . $tel;
 
         file_get_contents($url);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function findUsername()
+    {
+        $login = request()->input('email');
+
+        // dd($login);
+ 
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'tel';
+ 
+        request()->merge([$fieldType => $login]);
+ 
+        return $fieldType;
+    }
+
+    /**
+     * Get username property.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return $this->username;
     }
 }
