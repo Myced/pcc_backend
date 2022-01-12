@@ -38,7 +38,7 @@ class PurchaseController extends Controller
     {
         $user_id = $request->user_id;
 
-        $purchases = Purchase::where('user_id', $user_id)->latest()->get();
+        $purchases = Purchase::where('user_id', $user_id)->oldest()->get();
 
         $result = [
             "success" => true,
