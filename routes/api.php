@@ -28,6 +28,7 @@ Route::get('/messengers', 'Api\BooksController@messengers');
 Route::get('/messengers/all', 'Api\BooksController@allMessengers');
 Route::get('/diary/years', 'Api\DiaryController@diaryYears');
 Route::get('/diary/detail/{year}', 'Api\DiaryController@diaryDetail');
+Route::get('/diary/readings/{year}', 'Api\DiaryController@diaryReadings');
 Route::post('/user/purchase/add', 'Api\PurchaseController@addPurchase');
 Route::post('/user/purchase/list', 'Api\PurchaseController@purchaseList');
 Route::get('/get-purchase-item/{code}', 'Api\PurchaseController@getPurchaseItem');
