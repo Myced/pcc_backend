@@ -13,8 +13,15 @@ class DiaryReadingImport implements ToModel
     */
     public function model(array $row)
     {
-        //check if that reading exist.. and update it. 
-        $date = $row[3];
+        //check if that reading exist.. and update it.
+        $day = $this->getDoubleDigit($row[0]);;
+        $month = $this->getDoubleDigit($row[1]);;
+        $year = $row[2];
+
+        $date = $day . '/' . $month . '/' . $year;
+
+        if($row[1] == null)
+            return;
 
         $diaryReading = DiaryReading::where('date', $date)->first();
 
@@ -46,6 +53,16 @@ class DiaryReadingImport implements ToModel
             'reading_text' => $row[7],
             'name' => $row[8]
         ]);
+    }
+
+    private function getDoubleDigit($string)
+    {
+        if(strlen($string) == 1)
+        {
+            return "0" . $string;
+        }
+
+        return $string;
     }
    
 }
