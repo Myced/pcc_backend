@@ -43,10 +43,10 @@ class DiaryReadingImport implements ToModel
         }
 
         return new DiaryReading([
-            'day' => $row[0],
-            'month' => $row[1],
-            'year' => $row[2],
-            'date' => $row[3],
+            'day' => (int) $row[0],
+            'month' => (int) $row[1],
+            'year' => (int) $row[2],
+            'date' => $date,
             'psalms' => $row[4],
             'reading_one' => $row[5],
             'reading_two' => $row[6],
